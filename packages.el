@@ -14,7 +14,7 @@
 (setq coq-packages
     '(
       company-coq
-      (proof-general :location local)
+      proof-general
       ))
 
 ;; List of packages to exclude.
@@ -55,7 +55,8 @@
   "Initialize Proof General."
   ;; Setup from Proof General README, using a path from the configuration. Proof General
   ;; lazily loads from proof-site, so there's no need to use-package it.
-  (load proof-general-path)
+  ;; (load proof-general-path)
+  (load (concat (configuration-layer/get-elpa-package-install-directory 'proof-general) "generic/proof-site"))
   (spacemacs/set-leader-keys-for-major-mode 'coq-mode
     "n" 'proof-assert-next-command-interactive
     "u" 'proof-undo-last-successful-command
